@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.github.fourinline.domain.Board;
 import com.github.fourinline.domain.Player;
-import com.github.fourinline.domain.Token;
 import com.github.fourinline.view.BoardRenderer;
+import com.github.fourinline.view.Dialog;
+import com.github.fourinline.view.MinMaxDialog;
 
 public class Game {
     private final Board board;
@@ -19,18 +20,31 @@ public class Game {
     }
 
     public void start() {
-        board.put(0, Token.RED);
-        board.put(1, Token.GREEN);
-        board.put(2, Token.BLUE);
-        board.put(3, Token.YELLOW);
+        while (true) {
+            for (Player player : players) {
+                renderer.render(board);
 
-        board.put(0, Token.BLUE);
-        board.put(0, Token.GREEN);
-        board.put(0, Token.YELLOW);
+                System.out.println("Player: " + player.getName() + " makes a move.");
+                System.out.println("His token55 is: " + player.getToken().name());
 
-        board.put(2, Token.BLUE);
-        board.put(2, Token.BLUE);
+                int column;
+                while (true) {
+                    Dialog<Integer> dialog = new MinMaxDialog("Enter column for move: ",
+                            "You entered an incorrect number:",
+                            0,
+                            board.getWidth() - 1);
 
-        renderer.render(board);
+                    column = dialog.input();
+                    if (board.isFilled(column)) {
+                        System.out.println("The column `" + column + "` is filled!");
+                        continue;
+                    }
+
+                    break;
+                }
+
+                board.put(column, player.getToken());
+            }
+        }
     }
 }
