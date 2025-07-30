@@ -48,6 +48,16 @@ public class Board {
         return !isEmpty(0, column);
     }
 
+    public boolean isFull() {
+        for (int column = 0; column < width; column++) {
+            if (!isFilled(column)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public enum Size {
         DEFAULT(6, 7),
         ROW7_COLUMN8(7, 8),
