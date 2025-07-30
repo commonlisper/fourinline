@@ -20,8 +20,10 @@ public class BoardRenderer {
 
         System.out.print("  ");
         for (int i = 0; i < board.getWidth(); i++) {
-            System.out.print("|" + i);
+            System.out.print(" " + i);
         }
+
+        System.out.println();
     }
 
     private String getSprite(Token token) {
