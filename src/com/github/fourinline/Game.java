@@ -25,7 +25,7 @@ public class Game {
                 renderer.render(board);
 
                 System.out.println("Player: " + currentPlayer.getName() + " makes a move.");
-                System.out.println("His token55 is: " + currentPlayer.getToken().name());
+                System.out.println("His token is: " + currentPlayer.getToken().name());
 
                 makeMove(currentPlayer);
             }
