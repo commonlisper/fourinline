@@ -21,30 +21,35 @@ public class Game {
 
     public void start() {
         while (true) {
-            for (Player player : players) {
+            for (Player currentPlayer : players) {
                 renderer.render(board);
 
-                System.out.println("Player: " + player.getName() + " makes a move.");
-                System.out.println("His token55 is: " + player.getToken().name());
+                System.out.println("Player: " + currentPlayer.getName() + " makes a move.");
+                System.out.println("His token55 is: " + currentPlayer.getToken().name());
 
-                int column;
-                while (true) {
-                    Dialog<Integer> dialog = new MinMaxDialog("Enter column for move: ",
-                            "You entered an incorrect number:",
-                            0,
-                            board.getWidth() - 1);
-
-                    column = dialog.input();
-                    if (board.isFilled(column)) {
-                        System.out.println("The column `" + column + "` is filled!");
-                        continue;
-                    }
-
-                    break;
-                }
-
-                board.put(column, player.getToken());
+                makeMove(currentPlayer);
             }
         }
+    }
+
+    private void makeMove(Player player) {
+        int column;
+
+        while (true) {
+            Dialog<Integer> dialog = new MinMaxDialog("Enter column for move: ",
+                    "You entered an incorrect number:",
+                    0,
+                    board.getWidth() - 1);
+
+            column = dialog.input();
+            if (board.isFilled(column)) {
+                System.out.println("The column `" + column + "` is filled!");
+                continue;
+            }
+
+            break;
+        }
+
+        board.put(column, player.getToken());
     }
 }
