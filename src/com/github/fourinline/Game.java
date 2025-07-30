@@ -20,6 +20,8 @@ public class Game {
     }
 
     public void start() {
+        GameAnalyzer analyzer = new GameAnalyzer(board);
+
         while (true) {
             for (Player currentPlayer : players) {
                 renderer.render(board);
@@ -28,6 +30,11 @@ public class Game {
                 System.out.println("His token is: " + currentPlayer.getToken().name());
 
                 makeMove(currentPlayer);
+                boolean isWin = analyzer.isWin(currentPlayer.getToken());
+                System.out.println("Is token: " +
+                        currentPlayer.getToken() +
+                        " win? => " +
+                        isWin);
             }
         }
     }
