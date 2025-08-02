@@ -47,6 +47,7 @@ public class GameAnalyzer {
 
         for (int row = 0; row < board.getHeight(); row++) {
             tokenCount = 0;
+            prevToken = null;
             for (int column = 0; column < board.getWidth(); column++) {
                 if (board.isEmpty(row, column)) {
                     continue;
@@ -80,6 +81,7 @@ public class GameAnalyzer {
 
         for (int column = 0; column < board.getWidth(); column++) {
             tokenCount = 0;
+            prevToken = null;
             for (int row = 0; row < board.getHeight(); row++) {
                 if (board.isEmpty(row, column)) {
                     continue;
